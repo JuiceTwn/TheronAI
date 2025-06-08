@@ -24,6 +24,7 @@ def load_character(path: str | Path) -> Character:
         race=data.get("race", "Human"),
         char_class=data.get("class", "Fighter"),
         level=data.get("level", 1),
+        experience=data.get("experience", 0),
     )
 
     stats_data = data.get("stats", {})

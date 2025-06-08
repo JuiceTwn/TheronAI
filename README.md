@@ -11,6 +11,8 @@ This repository contains a minimal skeleton for a ChatGPT-powered Dungeons & Dra
 - **Dice rolling** – helper to roll dice with ``XdY`` notation
 - **Game state persistence** – save and load characters from JSON
 - **Basic combat** – simple attack resolution using dice rolls
+- **Leveling system** – gain experience and automatically level up
+- **Discord bot** – optional interface to play via a Discord server
 
 ## Usage
 
@@ -24,6 +26,20 @@ This repository contains a minimal skeleton for a ChatGPT-powered Dungeons & Dra
    python main.py
    ```
    The engine attempts to contact ChatGPT. Without an API key or network access it will fail gracefully.
+
+### Running the Discord bot
+
+Install the optional ``discord.py`` dependency:
+
+```bash
+pip install discord.py
+```
+
+Provide a ``DISCORD_BOT_TOKEN`` environment variable and run:
+
+```bash
+python discord_bot.py
+```
 
 ## Saving and Loading Characters
 
@@ -43,6 +59,16 @@ The ``roll_dice`` helper parses standard notation:
 ```python
 from engine import roll_dice
 damage = roll_dice("2d6+1")
+```
+
+## Leveling and Experience
+
+Characters gain experience through ``gain_experience``. When enough is
+accumulated (``100 * current level`` by default) they automatically level up
+and gain additional health.
+
+```python
+hero.gain_experience(150)  # levels to 2 and keeps leftover XP
 ```
 
 This is only a starting point; feel free to expand the mechanics, add combat logic, or build a full campaign framework on top of it.
